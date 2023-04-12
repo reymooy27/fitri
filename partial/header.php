@@ -1,4 +1,6 @@
 <?php
+  require './db.php';
+
   $conn = OpenCon();
   session_start();
 
@@ -10,6 +12,7 @@
     $result = $conn->query($query);
     $user = mysqli_fetch_assoc($result);
   }
+  
 
   $conn->close();
 ?>
@@ -30,9 +33,8 @@
     <div class="sidebar">
       <div class="sidebar-wraper">
         <img src="src/images/iconmonstr-x-mark-lined-240.png" alt="close" id='close'/>
-        <a href="">Dashboard</a>
-        <a href="">Kelas</a>
-        <a href="siswa.php">Siswa</a>
+        <a href="dashboard.php">Dashboard</a>
+        <a href="kelas.php">Kelas</a>
         <?php if(isset($_SESSION['user-id'])):?>
           <a href="controllers/logout.php">Log Out</a>
         <?php endif?>
@@ -48,11 +50,11 @@
           <div class='avatar'>
             <img src="src/images/iconmonstr-user-19-240.png" alt="user"/>
           </div>
-          <span><?= $user['username']?></span>
+          <span><?= $user['nama']?></span>
         </a>
       <?php else:?>
-        <a class='login-button' href="login.php">Login</a>
+        <a class='btn btn-light' href="login.php">Login</a>
       <?php endif ?>
       </div>
-      <div class='main bg-light-subtle'>
+      <div class='main bg-body'>
         
