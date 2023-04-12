@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2023 at 07:02 PM
+-- Generation Time: Apr 12, 2023 at 08:09 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -37,7 +37,9 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `kelas`) VALUES
-(1, 'X IPA I');
+(22, 'X IPA I'),
+(28, 'X IPA II'),
+(29, 'tes');
 
 -- --------------------------------------------------------
 
@@ -52,13 +54,6 @@ CREATE TABLE `konsultasi` (
   `userId` int(11) NOT NULL,
   `siswaId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `konsultasi`
---
-
-INSERT INTO `konsultasi` (`id`, `tanggal`, `keterangan`, `userId`, `siswaId`) VALUES
-(1, '2023-04-05', 'Lempar kaca', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -105,7 +100,8 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id`, `nama`, `kelasId`, `poin`) VALUES
-(1, 'Rey', 0, 0);
+(27, 'YUIraa', 22, 0),
+(28, 'INA', 22, 0);
 
 -- --------------------------------------------------------
 
@@ -126,8 +122,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nama`, `username`, `password`, `isAdmin`) VALUES
-(1, 'Susan Susanti', 'admin', 'admin', 1),
-(2, 'Burhan', 'burhan', 'password', 0);
+(8, 'Guru', 'admin', 'admin', 1);
 
 --
 -- Indexes for dumped tables
@@ -182,7 +177,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `konsultasi`
@@ -206,29 +201,23 @@ ALTER TABLE `sanksi`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `konsultasi`
+-- Constraints for table `siswa`
 --
-ALTER TABLE `konsultasi`
-  ADD CONSTRAINT `konsultasi_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `siswa` (`id`);
-
---
--- Constraints for table `sanksi`
---
-ALTER TABLE `sanksi`
-  ADD CONSTRAINT `sanksi_ibfk_1` FOREIGN KEY (`siswaId`) REFERENCES `siswa` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `siswa`
+  ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`kelasId`) REFERENCES `kelas` (`id`) ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
